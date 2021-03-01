@@ -13,7 +13,7 @@
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
     "@unimodules/core": "^7.0.0",
-    "@voxeet/react-native-voxeet-conferencekit": "^0.2.6-BETA3",
+    "@voxeet/react-native-voxeet-conferencekit": "^0.2.7-BETA2",
     "amazon-cognito-identity-js": "^4.5.10",
     "aws-amplify": "^3.3.13",
     "axios": "^0.21.1",
