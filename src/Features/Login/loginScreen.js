@@ -11,25 +11,26 @@ function LoginScreen(props) {
     VoxeetSDK.initialize(
       '<consumer_key>',
       '<consumer_secret>'
-    );
-    VoxeetSDK.connect({
-      externalId: 'test@gmail.com',
-      name: 'test@gmail.com',
-    })
-      .then(async () => {
-        const conferenceAlias = `76099784248324_QA_streamstyle`.toLocaleLowerCase();
-        const conference = await VoxeetSDK.create({ alias: conferenceAlias });
-        console.log('voxeet debug conferenceAlias: ', conferenceAlias);
-        console.log('voxeet debug conference: ', conference);
-        const joined = await VoxeetSDK.join(conference.conferenceId, {
-          constraints: {
-            audio: true,
-            video: true,
-          },
-        });
-        console.log('voxeet debug joined: ', joined);
+    ).then(() => {
+      VoxeetSDK.connect({
+        externalId: 'test@gmail.com',
+        name: 'test@gmail.com',
       })
-      .catch((e) => console.log('Voxeet join failed with error: ', e));
+        .then(async () => {
+          const conferenceAlias = `76099784248324_QA_streamstyle`.toLocaleLowerCase();
+          const conference = await VoxeetSDK.create({ alias: conferenceAlias });
+          console.log('voxeet debug conferenceAlias: ', conferenceAlias);
+          console.log('voxeet debug conference: ', conference);
+          const joined = await VoxeetSDK.join(conference.conferenceId, {
+            constraints: {
+              audio: true,
+              video: true,
+            },
+          });
+          console.log('voxeet debug joined: ', joined);
+        })
+        .catch((e) => console.log('Voxeet join failed with error: ', e));
+    });
   }, []);
 
   return (
