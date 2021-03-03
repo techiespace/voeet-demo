@@ -10,7 +10,7 @@ const loadCall = async () => {
   console.log('Voxeet test issue hermes: ', isHermes());
   await VoxeetSDK.initialize(
     '<consumer_key>',
-      '<consumer_secret>'
+    '<consumer_secret>'
   );
   await VoxeetSDK.connect({
     externalId: 'test@gmail.com',
