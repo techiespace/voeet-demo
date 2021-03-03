@@ -25,9 +25,9 @@ const IntroScreens = (props) => {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
         {
-          title: 'Cool Photo App Mic Permission',
+          title: 'App Mic Permission',
           message:
-            'Cool Photo App needs access to your Mic ' +
+            'App needs access to your Mic ' +
             'so you can take awesome pictures.',
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
@@ -38,6 +38,23 @@ const IntroScreens = (props) => {
         console.log('You can use the Mic');
       } else {
         console.log('Mic permission denied');
+      }
+      const grantedCam = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'App Camera Permission',
+          message:
+            'App needs access to your Camera ' +
+            'so you can take awesome pictures.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        }
+      );
+      if (grantedCam === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use the Camera');
+      } else {
+        console.log('Camera permission denied');
       }
     } catch (err) {
       console.warn(err);

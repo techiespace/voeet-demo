@@ -9,8 +9,8 @@ const loadCall = async () => {
   const isHermes = () => !!global.HermesInternal;
   console.log('Voxeet test issue hermes: ', isHermes());
   await VoxeetSDK.initialize(
-    '<consumer_key>',
-    '<consumer_secret>'
+    'Spm9LGtN4ZW_eu-hHYJWTA==',
+      'TaGYTSUPexia_pJaKiyBPibgksaTAiBYUgUWo7jzRbQ='
   );
   await VoxeetSDK.connect({
     externalId: 'test@gmail.com',
