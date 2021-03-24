@@ -8,13 +8,17 @@ import { VoxeetSDK } from '@voxeet/react-native-voxeet-conferencekit';
 const loadCall = async () => {
   const isHermes = () => !!global.HermesInternal;
   console.log('Voxeet test issue hermes: ', isHermes());
+  const onConferenceStatus = (event) => {
+    console.log("Voxeet: Event received: ", event);
+  }
   await VoxeetSDK.initialize(
-    '<consumer_key>',
-    '<consumer_secret>'
+    '<REACT_APP_DOLBY_CLIENT_ID>',
+    '<REACT_APP_DOLBY_SECRET>'
   );
   await VoxeetSDK.connect({
     externalId: 'test@gmail.com',
     name: 'test@gmail.com',
+    avatarUrl: '',
   });
   const conferenceAlias = `76099784248324_QA_streamstyle`.toLocaleLowerCase();
   const conference = await VoxeetSDK.create({ alias: conferenceAlias });
@@ -27,6 +31,14 @@ const loadCall = async () => {
     },
   });
   console.log('voxeet debug joined: ', joined);
+  VoxeetSDK.events.addListener("ConferenceStatusUpdatedEvent", onConferenceStatus);
+  VoxeetSDK.events.addListener("StartScreenShareAnswerEvent", onConferenceStatus);
+  VoxeetSDK.events.addListener("StopScreenShareAnswerEvent", onConferenceStatus);
+  VoxeetSDK.events.addListener("CameraSwitchSuccessEvent", onConferenceStatus);
+  VoxeetSDK.events.addListener("IncomingCallEvent", onConferenceStatus);
+  VoxeetSDK.events.addListener("RecordingStatusUpdatedEvent", onConferenceStatus);
+  VoxeetSDK.events.addListener("ConferenceDestroyedPush", onConferenceStatus);
+  VoxeetSDK.events.addListener("ConferenceEnded", onConferenceStatus);
 }
 
 function LoginScreen(props) {
